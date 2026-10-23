@@ -1,0 +1,6 @@
+# Spotify Web API Credentials (used by Cloudflare Workers local runtime)
+# Real credentials can be obtained from https://developer.spotify.com/dashboard
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+NUXT_SPOTIFY_CLIENT_ID=
+NUXT_SPOTIFY_CLIENT_SECRET=

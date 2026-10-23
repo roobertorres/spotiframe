@@ -1,0 +1,24 @@
+{
+  "name": "spotiframe",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "wrangler dev",
+    "postinstall": "nuxt prepare",
+    "test": "vitest run tests/unit",
+    "test:e2e": "vitest run tests/e2e"
+  },
+  "dependencies": {
+    "nuxt": "^4.6.2",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.5.1",
+    "vitest": "^5.0.5",
+    "wrangler": "^4.152.0"
+  }
+}
