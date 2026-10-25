@@ -3,7 +3,7 @@
  */
 import type { Measure } from './layout'
 
-export const FONT_FAMILY = 'Inter'
+export const FONT_FAMILY = 'Poppins'
 
 let fontsPromise: Promise<void> | null = null
 

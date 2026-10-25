@@ -78,8 +78,8 @@ export async function exportPdf({ layout, format, cover, code, title }: PdfExpor
   doc.setCreator('Spotiframe')
 
   const [regularBytes, mediumBytes] = await Promise.all([
-    fetchBytes('/fonts/Inter-Regular.ttf'),
-    fetchBytes('/fonts/Inter-Medium.ttf')
+    fetchBytes('/fonts/Poppins-Regular.ttf'),
+    fetchBytes('/fonts/Poppins-Medium.ttf')
   ])
   const fonts = {
     400: await doc.embedFont(regularBytes, { subset: true }),
