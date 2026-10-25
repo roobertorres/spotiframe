@@ -81,26 +81,30 @@ export function parsePdf(buffer: Buffer | Uint8Array | ArrayBuffer): PdfMetadata
       while ((btMatch = btRegex.exec(streamContent)) !== null) {
         const textBlock = btMatch[1];
 
-        // Match (string) Tj or ' or "
-        const tjRegex = /\(([\s\S]*?)\)\s*(?:Tj|'|")/g;
+        // Match (string) Tj or <hex> Tj or ' or "
+        const tjRegex = /(?:\(([\s\S]*?)\)|<([0-9a-fA-F]+)>)\s*(?:Tj|'|")/g;
         let tjMatch: RegExpExecArray | null;
         while ((tjMatch = tjRegex.exec(textBlock)) !== null) {
-          const unescaped = decodePdfString(tjMatch[1]);
+          const unescaped = tjMatch[1] !== undefined
+            ? decodePdfString(tjMatch[1])
+            : Buffer.from(tjMatch[2]!, 'hex').toString('latin1');
           if (unescaped.trim()) {
             textTokens.push(unescaped.trim());
           }
         }
 
-        // Match [ (item1) -120 (item2) ] TJ
+        // Match [ (item1) <hex> -120 (item2) ] TJ
         const arrayTjRegex = /\[([\s\S]*?)\]\s*TJ/g;
         let arrayMatch: RegExpExecArray | null;
         while ((arrayMatch = arrayTjRegex.exec(textBlock)) !== null) {
           const arrayBody = arrayMatch[1];
-          const innerStrRegex = /\(([\s\S]*?)\)/g;
+          const innerItemRegex = /(?:\(([\s\S]*?)\)|<([0-9a-fA-F]+)>)/g;
           let innerMatch: RegExpExecArray | null;
           let combined = '';
-          while ((innerMatch = innerStrRegex.exec(arrayBody)) !== null) {
-            combined += decodePdfString(innerMatch[1]);
+          while ((innerMatch = innerItemRegex.exec(arrayBody)) !== null) {
+            combined += innerMatch[1] !== undefined
+              ? decodePdfString(innerMatch[1])
+              : Buffer.from(innerMatch[2]!, 'hex').toString('latin1');
           }
           if (combined.trim()) {
             textTokens.push(combined.trim());

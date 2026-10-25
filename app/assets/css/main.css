@@ -1,0 +1,128 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --line: #c9c9cd;
+  --ink: #111;
+  color-scheme: light;
+  accent-color: #000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #efeff1;
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.field {
+  display: grid;
+  margin-block-end: 1rem;
+}
+label {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  margin-block-end: 0.3rem;
+}
+input,
+textarea,
+button {
+  font: inherit;
+  font-size: 1rem;
+}
+input[type='text'],
+input[type='search'],
+textarea {
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #8d8d93;
+  border-radius: 0;
+  background: #fff;
+}
+textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+input[type='file']::file-selector-button {
+  font: inherit;
+  margin-inline-end: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #000;
+  background: #fff;
+  cursor: pointer;
+}
+input:user-invalid {
+  border-color: #b3261e;
+}
+:focus-visible {
+  outline: 3px solid #0b57d0;
+  outline-offset: 2px;
+}
+
+button {
+  min-block-size: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+}
+button:hover:not(:disabled) {
+  background: #eee;
+}
+button.primary {
+  background: #000;
+  color: #fff;
+}
+button.primary:hover:not(:disabled) {
+  background: #333;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.msg {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: #444;
+}
+.msg.error {
+  color: #b3261e;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
