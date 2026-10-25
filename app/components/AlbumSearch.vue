@@ -78,6 +78,9 @@ defineExpose({ run, query })
   gap: 0.5rem;
   align-items: end;
 }
+.row .field {
+  margin-block-end: 0;
+}
 .grow {
   flex: 1;
 }
